@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 	// Create an array of items to be load
 	var top = 100;
-	var left = 5;
+	var left = 51;
 	var manifest = [
 
 		{id:"2", src:"02.png", xPos:106, yPos:1, haveMask: 1, maskY:-335, maskHeight:342},
@@ -154,22 +154,22 @@ $(document).ready(function() {
 	$(window).resize(function() {
 
 
-	    if($(window).width() < 560) {
+	    if($(window).width() < 650) {
 	    	$cnvs.width( $(window).width() );
 	    } else {
-	    	$cnvs.width( 560 );
+	    	$cnvs.width( 650 );
 	    }
 
 		$cnvs.height($(window).height());
 		
-		var scale = $cnvs.width()/560;
+		var scale = $cnvs.width()/650;
         stage.canvas.height = ( $(window).height()-2 ) /scale;
         if(getMcById('ocu') != undefined) {
 			getMcById('ocu').set({
 				y: stage.canvas.height - 100
 	        });
 	        if( getMcById('ocu').y < 600) {
-	        	$cnvs.width( 560 * getMcById('ocu').y/600 * scale);
+	        	$cnvs.width( 650 * getMcById('ocu').y/600 * scale);
 	        	stage.canvas.height = ( $(window).height()-2 ) / (scale* getMcById('ocu').y/600);
 	        }
 	        getMcById('ocu').set({
@@ -181,6 +181,4 @@ $(document).ready(function() {
 	});
 
 	$(window).trigger('resize');
-
-
 });
