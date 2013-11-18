@@ -12,10 +12,7 @@ body {
 	overflow: hidden;
 }
 
-
 #cnvs {
 	display: block;
 	position: relative;
-	width: 560px;
-	margin: 0 auto;
 }

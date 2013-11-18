@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 	// Create an array of items to be load
 	var top = 100;
-	var left = 51;
+	var left = 3;
 	var manifest = [
 
 		{id:"2", src:"02.png", xPos:106, yPos:1, haveMask: 1, maskY:-335, maskHeight:342},
@@ -151,31 +151,33 @@ $(document).ready(function() {
 		return mc;
 	}
 
+	var scale = 1; 
 	$(window).resize(function() {
 
-
-	    if($(window).width() < 650) {
-	    	$cnvs.width( $(window).width() );
-	    } else {
-	    	$cnvs.width( 650 );
+	    if($(window).width() < 500 ) {
+	    	$cnvs.width( ($(window).width()+50 * scale) );
+	    } else { 
+	    	$cnvs.width( 550 );
 	    }
-
 		$cnvs.height($(window).height());
-		
-		var scale = $cnvs.width()/650;
-        stage.canvas.height = ( $(window).height()-2 ) /scale;
+		scale = $cnvs.width()/550;
+        stage.canvas.height = $(window).height()/scale;
+        
         if(getMcById('ocu') != undefined) {
 			getMcById('ocu').set({
 				y: stage.canvas.height - 100
 	        });
 	        if( getMcById('ocu').y < 600) {
-	        	$cnvs.width( 650 * getMcById('ocu').y/600 * scale);
+	        	$cnvs.width( 550 * getMcById('ocu').y/600 * scale);
 	        	stage.canvas.height = ( $(window).height()-2 ) / (scale* getMcById('ocu').y/600);
 	        }
 	        getMcById('ocu').set({
 				y: stage.canvas.height - 100
 	        });
 	    }
+
+	   	var _lft = ($(window).width() - $cnvs.width()) * 0.5;
+	    $cnvs.css({'left': _lft})
 
 	    stage.update();
 	});
